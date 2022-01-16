@@ -63,10 +63,3 @@ fclean : clean
 re : fclean all
 
 .PHONY	: all clean fclean re libft
-
-n : 
-	norminette $(SRCS) $(HEADER)
-run : all
-	./push_swap 8 5 7 
-count : all
-	./push_swap 8 5 7 | wc -l
