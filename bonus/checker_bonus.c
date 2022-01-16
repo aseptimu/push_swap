@@ -6,7 +6,7 @@
 /*   By: aseptimu <aseptimu@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 14:24:22 by aseptimu          #+#    #+#             */
-/*   Updated: 2022/01/16 17:40:53 by aseptimu         ###   ########.fr       */
+/*   Updated: 2022/01/16 18:44:09 by aseptimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	main(int argc, char **argv)
 	int		*args_m;
 	int		err;
 
+	if (argc == 1)
+		return (0);
 	b = NULL;
 	args_m = check_args(argc, argv);
 	if (args_m == NULL)
@@ -71,10 +73,7 @@ int	main(int argc, char **argv)
 	ft_lstclear(&a, NULL);
 	free(args_m);
 	if (err == -1)
-	{
 		write(1, "KO\n", 3);
-		return (0);
-	}
 	else
 		write(1, "OK\n", 3);
 	return (0);
