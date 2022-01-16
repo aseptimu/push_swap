@@ -6,7 +6,7 @@
 /*   By: aseptimu <aseptimu@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 12:52:00 by aseptimu          #+#    #+#             */
-/*   Updated: 2022/01/16 17:38:15 by aseptimu         ###   ########.fr       */
+/*   Updated: 2022/01/16 18:10:20 by aseptimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	rrabr(t_list **a, t_list **b, char flag)
 {
 	t_list	*tmp;
 
-	if ((flag == 'a' || flag == 'z') && *a)
+	if ((flag == 'a' || flag == 'z') && *a && (*a)->next)
 	{
 		tmp = *a;
 		while (tmp->next->next != NULL)
@@ -103,7 +103,7 @@ void	rrabr(t_list **a, t_list **b, char flag)
 		*a = tmp->next;
 		tmp->next = NULL;
 	}
-	if ((flag == 'b' || flag == 'z') && *b)
+	if ((flag == 'b' || flag == 'z') && *b && (*b)->next)
 	{
 		tmp = *b;
 		while (tmp->next->next != NULL)
