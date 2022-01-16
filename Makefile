@@ -14,7 +14,7 @@ OBJS = $(patsubst %.c, %.o, $(SRCS))
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 
 HEADER = push_swap.h
 

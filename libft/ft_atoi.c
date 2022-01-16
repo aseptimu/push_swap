@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aseptimu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aseptimu <aseptimu@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 15:00:44 by aseptimu          #+#    #+#             */
-/*   Updated: 2021/10/12 17:05:30 by aseptimu         ###   ########.fr       */
+/*   Updated: 2022/01/16 12:38:16 by aseptimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	result(const char *str, unsigned long long res, int negative)
+long long	result(const char *str, unsigned long long res, int negative)
 {
 	int	i;
 
@@ -24,14 +24,14 @@ int	result(const char *str, unsigned long long res, int negative)
 	if (res > 9223372036854775807 || i > 19)
 	{
 		if (negative == 1)
-			return (-1);
+			return (INT32_MIN - 1LL);
 		else if (negative == -1)
-			return (0);
+			return (INT32_MAX + 1LL);
 	}
 	return (res * negative);
 }
 
-int	ft_atoi(const char *str)
+long long	ft_atoi(const char *str)
 {
 	int					i;
 	unsigned long long	ret;

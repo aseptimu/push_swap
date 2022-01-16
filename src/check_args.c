@@ -6,7 +6,7 @@
 /*   By: aseptimu <aseptimu@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 14:54:44 by aseptimu          #+#    #+#             */
-/*   Updated: 2022/01/15 17:39:50 by aseptimu         ###   ########.fr       */
+/*   Updated: 2022/01/16 14:05:13 by aseptimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,19 @@ static int	check_digit(char **argv, int argc)
 	while (i < argc)
 	{
 		j = 0;
-		while (argv[i][j] || argv[i][0] == '\0')
+		if (argv[i][0] == '0' && argv[i][j + 1] != '\0')
+			return (-1);
+		if (argv[i][j] == '-' || argv[i][j] == '+')
+			j++;
+		if (argv[i][j] < '0' || argv[i][j] > '9')
+			return (-1);
+		if (argv[i][j] == '0' && argv[i][j + 1] != '\0')
+			return (-1);
+		while (argv[i][j])
 		{
-			if (!((argv[i][j] >= '0' && argv[i][j] <= '9') || \
-			argv[i][j] == '-' || argv[i][j] == '+'))
+			if (argv[i][j] < '0' || argv[i][j] > '9')
 				return (-1);
 			j++;
-		}
-		if (argv[i][0] == '0' && argv[i][1])
-		{
-			if (argv[i][1] != ' ')
-				return (-1);
 		}
 		i++;
 	}
@@ -40,8 +42,9 @@ static int	check_digit(char **argv, int argc)
 
 static int	*convert_int(int argc, char **argv)
 {
-	int	i;
-	int	*args;
+	int			i;
+	int			*args;
+	long long	check_overflow;
 
 	i = 0;
 	args = (int *)malloc((argc - 1) * sizeof(int));
@@ -49,7 +52,10 @@ static int	*convert_int(int argc, char **argv)
 		return (NULL);
 	while (i < argc - 1)
 	{
-		args[i] = ft_atoi(argv[i + 1]);
+		check_overflow = ft_atoi(argv[i + 1]);
+		if (check_overflow > INT32_MAX || check_overflow < INT32_MIN)
+			errors(1, args);
+		args[i] = (int)check_overflow;
 		i++;
 	}
 	return (args);
